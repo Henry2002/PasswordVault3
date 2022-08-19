@@ -1,0 +1,135 @@
+/* You can add global styles to this file, and also import other style files */
+
+/* Provide sufficient contrast against white background */
+a {
+  color: #0366d6;
+}
+
+code {
+  color: #e01a76;
+}
+
+textarea{
+    height:200%;
+    width:75%
+}
+.btn {
+  margin: 4px 2px;
+}
+
+.btn-dustbin{
+    background:url(/assets/dustbin.png)
+}
+
+.light-purple {
+  color: #7a99ff;
+}
+
+.flex-container{
+    display:flex;
+    flex-direction:row;
+    align-content:space-around
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #7a99ff;
+  border-color: #1861ac;
+}
+.tool-bar-row{
+    width:50%;
+}
+.grey{
+    color:gainsboro
+}
+
+.dark-purple {
+  color: #324158;
+}
+
+.red{
+    color:red
+}
+
+.green{
+    color:green
+}
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 45px;
+  height: 23px;
+}
+
+ 
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 20px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+
+input:checked + .slider {
+  background-color: #7a99ff;
+}
+
+.mat-checkbox-checked.mat-accent .mat-checkbox-background {
+  background-color: #7a99ff !important;
+}
+
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(20px);
+  -ms-transform: translateX(20px);
+  transform: translateX(20px);
+}
+
+
+.slider.round {
+  border-radius: 23px;
+}
+
+  .slider.round:before {
+    border-radius: 50%;
+  }
+
+html, body { height: 100%; }
+body {
+  margin: 0;
+  
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+
+  
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

@@ -1,0 +1,132 @@
+
+<mat-card>
+  <mat-card-title class="dark-purple">
+    {{company.name}}
+    <span class="float-end" [ngClass]="!company.active? 'light-purple':'dark-purple'">{{activeAsString}}</span>
+  </mat-card-title>
+  <mat-card-content>
+    <p>Notes: {{company.notes}}</p>
+
+    <mat-card>
+      <mat-card-title class="dark-purple">
+        Contacts:
+      </mat-card-title>
+      <mat-table [dataSource]="dataSourceC">
+        <div *matNoDataRow>No Contact data found</div>
+        <ng-container matColumnDef="Contact ID">
+          <mat-header-cell class="dark-purple" *matHeaderCellDef>Contact ID</mat-header-cell>
+          <mat-cell *matCellDef="let contact" [ngClass]="contact.isPrimary? 'light-purple':'dark-purple'">{{contact.id}}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="Contact Name">
+          <mat-header-cell class="dark-purple" *matHeaderCellDef>Contact Name</mat-header-cell>
+          <mat-cell *matCellDef="let contact" [ngClass]="contact.isPrimary? 'light-purple':'dark-purple'">
+            <button mat-button (click)="addEditContact(contact)">
+              {{contact.name}}
+            </button>
+          </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="Contact E-mail">
+          <mat-header-cell class="dark-purple" *matHeaderCellDef>Contact E-mail</mat-header-cell>
+          <mat-cell *matCellDef="let contact" [ngClass]="contact.isPrimary? 'light-purple':'dark-purple'">{{contact.email}}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="Contact Phone">
+          <mat-header-cell class="dark-purple" *matHeaderCellDef>Contact Phone</mat-header-cell>
+          <mat-cell *matCellDef="let contact" [ngClass]="contact.isPrimary? 'light-purple':'dark-purple'">{{contact.phone}}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="Actions">
+          <mat-header-cell *matHeaderCellDef></mat-header-cell>
+          <mat-cell class="justify-content-end" *matCellDef="let contact">
+            <button mat-button (click)="removeContact(contact)"><img width="30" height="30" src="../assets/dustbin.png" /></button>
+          </mat-cell>
+        </ng-container>
+        <mat-header-row *matHeaderRowDef="displayedColumnsC"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumnsC"></mat-row>
+      </mat-table>
+      <div class="row">
+        <div class="col-6">
+          <br />
+          <button mat-button class="btn btn-primary" mat-primary (click)="addContact()">Add</button>
+        </div>
+        <div class="col-6">
+          <mat-paginator [length]="200" [pageSize]="5" [pageSizeOptions]="[5, 10, 25, 100]">
+          </mat-paginator>
+        </div>
+      </div>
+    </mat-card>
+    <br />
+
+    
+    <mat-card>
+      <mat-card-title>
+        Servers:
+      </mat-card-title>
+      <mat-table [dataSource]="dataSourceS" multiTemplateDataRows>
+        <div *matNoDataRow>No Server data found</div>
+        <ng-container matColumnDef="Server ID">
+          <mat-header-cell *matHeaderCellDef>Server ID</mat-header-cell>
+          <mat-cell *matCellDef="let server">{{server.id}}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="Server Name">
+          <mat-header-cell *matHeaderCellDef>Server Name</mat-header-cell>
+          <mat-cell *matCellDef="let server">
+            <button mat-button (click)="addEditServer(server)">
+              {{server.name}}
+            </button>
+          </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="Server Address">
+          <mat-header-cell *matHeaderCellDef>Server Address</mat-header-cell>
+          <mat-cell *matCellDef="let server">{{server.address}}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="Server Username">
+          <mat-header-cell *matHeaderCellDef>Server Username</mat-header-cell>
+          <mat-cell *matCellDef="let server">{{server.username}}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="Server Password">
+          <mat-header-cell *matHeaderCellDef>Server Password</mat-header-cell>
+          <mat-cell *matCellDef="let server">{{server.password}}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="expandedDetail">
+          <mat-cell *matCellDef="let server" [attr.colspan]="displayedColumnsS.length">
+            <div class="row" [@detailExpand]="server.isExpanded ? 'expanded' : 'collapsed'">
+              <span>{{server.notes}}</span>
+            </div>
+          </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="Actions">
+          <mat-header-cell *matHeaderCellDef></mat-header-cell>
+          <mat-cell class="justify-content-end" *matCellDef="let server">
+            <button mat-button (click)="removeServer(server)"><img width="30" height="30" src="../assets/dustbin.png" /></button>
+          </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumnsS"></mat-header-row>
+        <mat-row *matRowDef="let server; columns: displayedColumnsS;" class="server-row"
+                 [class.server-expanded-row]="server.isExpanded" (click)="toggleRow(server)"></mat-row>
+        <mat-row *matRowDef="let row; columns: ['expandedDetail']" class="server-detail-row"></mat-row>
+
+      </mat-table>
+      <div class="row">
+        <div class="col-6">
+          <br />
+          <button mat-button class="btn btn-primary" mat-primary (click)="addServer()">Add</button>
+        </div>
+        <div class="col-6">
+          <mat-paginator [length]="200" [pageSize]="5" [pageSizeOptions]="[5, 10, 25, 100]">
+          </mat-paginator>
+        </div>
+        </div>
+</mat-card>
+    <br />
+
+    <mat-card-actions>
+      <button mat-raised-button class="btn btn-secondary" (click)="back()">Back</button>
+      <button mat-raised-button class="btn btn-primary" (click)="addEditCompany(company)">Edit</button>
+    </mat-card-actions>
+  </mat-card-content>
+
+
+
+
+  
+

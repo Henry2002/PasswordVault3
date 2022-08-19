@@ -1,0 +1,19 @@
+
+  <mat-card>
+    <mat-card-title class="dark-purple">
+      Add/Edit Company
+      <mat-card-title>
+        <mat-card-content>
+              <mat-form-field>
+                <input matInput name="name" placeholder="Company Name" type="text" [(ngModel)]="company.name" />
+              </mat-form-field>&nbsp;
+              <mat-checkbox class="dark-purple" [(ngModel)]="company.active">Is company active?</mat-checkbox>
+           <br />
+             <textarea  [(ngModel)]="company.notes" placeholder="Notes">
+                 </textarea>
+</mat-card-content>
+        <mat-card-actions>
+          <button mat-raised-button class="btn btn-secondary" (click)="back()">Back</button>
+          <button mat-raised-button class="btn btn-primary" (click)="save()">Save</button>
+        </mat-card-actions>
+

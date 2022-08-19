@@ -1,0 +1,55 @@
+
+  <mat-card>
+    
+      <mat-form-field ngDefaultControl>
+        <mat-select placeholder="Search in" [(value)]="searchOption">
+          <mat-option *ngFor="let option of searchOptions" [value]="option" [(ngModel)]="searchOption" ngDefaultControl>
+            {{option}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+
+      <mat-form-field n>
+        <span matPrefix> </span>
+        <input type="tel" matInput placeholder="{{searchPhrase}}" name="search" [(ngModel)]="searchPhrase" ngDefaultControl>
+        <button matSuffix mat-button (click)="search(searchPhrase,searchOption)"><mat-icon>search</mat-icon></button>
+      </mat-form-field>
+    
+  </mat-card>
+
+  <mat-card>
+    <mat-card-title>
+      Search Results:
+    </mat-card-title>
+    <mat-card-content>
+
+      <br />
+      <mat-table [dataSource]="dataSource">
+        <ng-container matColumnDef="Company ID">
+          <mat-header-cell *matHeaderCellDef>Company ID</mat-header-cell>
+          <mat-cell *matCellDef="let company">{{company.id}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="Company Name">
+          <mat-header-cell *matHeaderCellDef>Company Name</mat-header-cell>
+          <mat-cell *matCellDef="let company"
+                    [ngClass]="!company.active? 'grey':'black'">
+            <button mat-button
+                    (click)="openCompany(company)">
+              {{company.name}}
+            </button>
+          </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="Actions">
+          <mat-header-cell *matHeaderCellDef></mat-header-cell>
+          <mat-cell class="justify-content-end" *matCellDef="let company">
+            <button mat-button class="btn btn-dustbin" (click)="removeCompany(company.id)"><img width="30" height="30" src="../assets/dustbin.png" /></button>
+          </mat-cell>
+        </ng-container>
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+      </mat-table>
+    </mat-card-content>
+  </mat-card>
+  

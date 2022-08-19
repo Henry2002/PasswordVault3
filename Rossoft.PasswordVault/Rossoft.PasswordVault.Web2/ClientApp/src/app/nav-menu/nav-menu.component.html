@@ -1,0 +1,38 @@
+<header>
+  <nav
+    class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3"
+  >
+    <div class="container">
+      <div [routerLink]="['/']">
+        <img width="100" height="100" src="../assets/Rossoft-logo-dark-1.png" sizes="(max-width: 3102px) 100vw, 3102px">
+      </div>
+      <button class="navbar-toggler"
+              type="button"
+              data-toggle="collapse"
+              data-target=".navbar-collapse"
+              aria-label="Toggle navigation"
+              [attr.aria-expanded]="isExpanded"
+              (click)="toggle()">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="navbar-collapse collapse d-sm-inline-flex justify-content-end"
+           [ngClass]="{ show: isExpanded }">
+        <ul class="navbar-nav flex-grow">
+          <li class="nav-item">
+            <form *ngIf="showSearch">
+              <mat-form-field>
+                <span matPrefix> </span>
+                <input type="tel" matInput placeholder="Search" name="search" [(ngModel)]="searchPhrase">
+                <button matSuffix mat-button (click)="search()"><mat-icon>search</mat-icon></button>
+              </mat-form-field>
+              <br />
+
+            </form>
+          </li>
+
+        </ul>
+        <app-login-menu></app-login-menu>
+      </div>
+    </div>
+  </nav>
+</header>

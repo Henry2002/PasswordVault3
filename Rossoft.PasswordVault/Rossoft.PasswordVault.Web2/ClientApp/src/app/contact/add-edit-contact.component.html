@@ -1,0 +1,29 @@
+
+<mat-card>
+  <mat-card-title class="dark-purple">
+    Add/Edit Contact
+  </mat-card-title>
+  <mat-card-content>
+    <mat-form-field>
+      <input matInput placeholder="Contact Name" type="text" [(ngModel)]="contact.name" />
+    </mat-form-field>
+    <mat-checkbox class="dark-purple" [(ngModel)]="contact.isPrimary">Is contact primary?</mat-checkbox>
+    <br />
+    <mat-form-field>
+      <input matInput placeholder="Contact E-mail" type="text" [(ngModel)]="contact.email" />
+    </mat-form-field>
+    <br />
+    <mat-form-field>
+      <input matInput placeholder="Contact Phone Number" type="text" [(ngModel)]="contact.phone" />
+    </mat-form-field>
+    <br />
+    <textarea [(ngModel)]="contact.notes" placeholder="Notes">
+                 </textarea>
+    <br /><br />
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button class="btn btn-secondary" (click)="back()">Back</button>
+    <button mat-raised-button class="btn btn-primary" (click)="save()">Save</button>
+  </mat-card-actions>
+</mat-card>
+

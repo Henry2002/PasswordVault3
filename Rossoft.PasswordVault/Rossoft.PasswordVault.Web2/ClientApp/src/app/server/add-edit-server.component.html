@@ -1,0 +1,31 @@
+
+<mat-card>
+  <mat-card-title class="dark-purple">
+    Add/Edit Server
+  </mat-card-title>
+  <mat-card-content>
+    <mat-form-field>
+      <input matInput placeholder="Server Name" type="text" [(ngModel)]="server.name" />
+    </mat-form-field>
+    <br />
+    <mat-form-field>
+      <input matInput placeholder="Server Address" type="text" [(ngModel)]="server.address" />
+    </mat-form-field>
+    <br />
+    <mat-form-field>
+      <input matInput placeholder="Server Username" type="text" [(ngModel)]="server.username" />
+    </mat-form-field>
+    <br />
+    <mat-form-field>
+      <input matInput placeholder="Server Password" type="text" [(ngModel)]="server.password" />
+    </mat-form-field>
+    <br />
+    <textarea [(ngModel)]="server.notes" placeholder="Notes"></textarea>
+    <br /><br />
+
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button class="btn btn-secondary" (click)="back()">Back</button>
+    <button mat-raised-button class="btn btn-primary" (click)="save()">Save</button>
+  </mat-card-actions>
+ 
