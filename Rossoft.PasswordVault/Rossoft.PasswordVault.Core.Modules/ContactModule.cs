@@ -32,7 +32,8 @@ namespace Rossoft.PasswordVault.Core.Modules
                 Name = contact.Name,
                 Email = contact.Email,
                 Phone = contact.Phone,
-                Companyid = contact.Company.Id,
+                Notes= contact.Notes,
+                Companyid = id,
                 IsPrimary=contact.IsPrimary
             };
 

@@ -4,19 +4,20 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Company } from '../../models/company';
 import { Location } from '@angular/common'
 import { Server } from '../../models/server';
+import { WebService } from '../../services/WebService';
 
 @Component({
   selector: 'add-edit-server',
   templateUrl: './add-edit-server.component.html',
 })
 export class AddEditServerComponent {
-  http: HttpClient;
+
   baseUrl: string;
   server: any;
 
 
-  constructor(http: HttpClient, private route: ActivatedRoute, private router: Router, private location: Location, @Inject('BASE_URL') baseUrl: string) {
-    this.http = http;
+  constructor(private webService: WebService, private route: ActivatedRoute, private router: Router, private location: Location, @Inject('BASE_URL') baseUrl: string) {
+
     this.baseUrl = baseUrl;
     this.server = {};
   }
@@ -25,8 +26,8 @@ export class AddEditServerComponent {
     this.route.paramMap.subscribe(params => {
       var serverId = params.get('id');
       if (serverId) {
-        this.http.get('server/getserver/' + serverId).subscribe(result => {
-          this.server= result
+        this.webService.get('server/getserver/' + serverId, (res: Server) => {
+          this.server= res
         });
       } else {
         this.server.companyId = params.get('companyid')
@@ -36,8 +37,7 @@ export class AddEditServerComponent {
 
 
   save() {
-    this.http.post('server/saveserver', this.server)
-      .subscribe(result => {
+    this.webService.post('server/saveserver', this.server, () => {
         this.location.back()
       });
   }

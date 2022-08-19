@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
@@ -16,10 +16,13 @@ import { AddEditServerComponent } from './server/add-edit-server.component';
 import { SearchComponent } from './search/search.component';
 import { AddEditCompanyComponent } from './company/add-edit-company.component';
 import { OverwritePrimaryDialogComponent } from './contact/overwrite-primary-dialog';
-import { DeleteDialogComponent } from './company/delete-dialog.component';
+import { DeleteDialogComponent } from './tables/delete-dialog.component';
 import { ApiAuthorizationModule } from 'src/api-authorization/api-authorization.module';
 import { AuthorizeGuard } from 'src/api-authorization/authorize.guard';
 import { AuthorizeInterceptor } from 'src/api-authorization/authorize.interceptor';
+import { ServerTableComponent } from './tables/server-table.component';
+import { ContactTableComponent } from './tables/contact-table.component';
+import { CompanyTableComponent } from './tables/company-table.component';
 
 
 
@@ -36,6 +39,9 @@ import { AuthorizeInterceptor } from 'src/api-authorization/authorize.intercepto
     SearchComponent,
     OverwritePrimaryDialogComponent,
     DeleteDialogComponent,
+    ServerTableComponent,
+    CompanyTableComponent,
+    ContactTableComponent
 
   ],
   imports: [
@@ -58,6 +64,7 @@ import { AuthorizeInterceptor } from 'src/api-authorization/authorize.intercepto
     NoopAnimationsModule
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthorizeInterceptor, multi: true }],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppModule { }
